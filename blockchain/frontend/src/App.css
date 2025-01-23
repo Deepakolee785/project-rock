@@ -1,0 +1,119 @@
+/* App.css */
+
+/* Center the content and style the text */
+.white-background {
+  text-align: center;
+  padding: 50px;
+}
+
+/* Card container layout */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  /* Allow cards to wrap in smaller screens */
+}
+
+.card-container.row-1 {
+  margin-bottom: 40px;
+}
+
+.card {
+  width: 250px;
+  background-color: #fff;
+  border: 2px solid #4caf50;
+  /* Green border for attractiveness */
+  border-radius: 10px;
+  /* Rounded corners for smoothness */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect to lift the card slightly */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* Enhanced shadow on hover */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  /* Adjust this based on image aspect ratio */
+  object-fit: cover;
+  border-radius: 8px;
+  /* Smooth corners around images */
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Button Styling */
+.card button {
+  background-color: #4caf50;
+  /* Green background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease;
+  margin-top: 15px;
+}
+
+/* Hover effect for button */
+.card button:hover {
+  background-color: #45a049;
+  /* Darker green */
+  transform: translateY(-3px);
+  /* Lift effect when hovering */
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #00aaff;
+  /* Light blue color */
+  text-align: center;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-logo {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navbar-links li {
+  list-style-type: none;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.navbar-links a:hover {
+  background-color: #0077cc;
+  /* Darker blue on hover */
+}
