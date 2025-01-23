@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../constant";
+import useWallet from "../hooks/useWallet";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const RegistrationForm = () => {
     confirmPassword: "",
     phone: "",
   });
+
+  const { executeContractFunction } = useWallet();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -108,9 +111,35 @@ const RegistrationForm = () => {
     }
   };
 
+  const addCandidate = async () => {
+    try {
+      const result = await executeContractFunction(
+        "addCandidate",
+        "Candidate 1"
+      );
+      console.log("Contract function executed:", result);
+    } catch (error) {
+      console.error("Error calling contract function:", error);
+    }
+  };
+
+  const getCandidates = async () => {
+    try {
+      const result = await executeContractFunction("candidatesCount");
+      console.log({ result });
+    } catch (error) {
+      console.error("Error calling contract function:", error);
+    }
+  };
+
   return (
     <div className="registration-form">
       <h1>Registration Form</h1>
+      <button type="button" onClick={addCandidate}>
+        Add candidate
+      </button>
+
+      <button onClick={getCandidates}>get candidates</button>
       <form onSubmit={handleSubmit}>
         {/* Personal Details Section */}
         <fieldset>

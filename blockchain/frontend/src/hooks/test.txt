@@ -1,0 +1,41 @@
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+
+export default function useWallet() {
+  const [currentUserAddress, setCurrentUserAddress] = useState(null);
+  const [provider, setProvider] = useState(null);
+
+  useEffect(() => {
+    // Check if ethereum object exists (MetaMask or similar wallet)
+    if (window.ethereum) {
+      const ethereumProvider = new ethers.BrowserProvider(window.ethereum);
+      setProvider(ethereumProvider);
+    }
+
+    connectWallet();
+  }, []);
+
+  const connectWallet = async () => {
+    try {
+      // Request account access
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      // Set the first account
+      setCurrentUserAddress(accounts[0]);
+    } catch (error) {
+      console.error("Connection failed", error);
+      throw error;
+    }
+  };
+
+  console.log({
+    provider,
+    currentUserAddress,
+  });
+
+  return {
+    currentUserAddress,
+  };
+}

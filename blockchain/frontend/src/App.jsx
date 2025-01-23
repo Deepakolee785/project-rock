@@ -22,6 +22,7 @@ import feature3 from "./assets/images/features3.png";
 import feature4 from "./assets/images/features4.png";
 import feature5 from "./assets/images/features5.png";
 import Dashboard from "./dashboard/Dashboard";
+import ConnectBlockchain from "./components/wallet/ConnectBlockchain";
 
 // Home Page Content
 function HomePage() {
@@ -123,37 +124,42 @@ function App() {
   };
 
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} /> {/* Home Route */}
-        <Route
-          path="/login"
-          element={
-            <LoginPage
-              onSubmit={handleSubmit}
-              loading={loading}
-              error={error}
-            />
-          }
-        />{" "}
-        {/* Login Page */}
-        <Route path="/new-registration" element={<RegistrationForm />} />{" "}
-        {/* Registration Form */}
-        <Route path="/enter-website" element={<EnterWebsite />} />{" "}
-        {/* Enter Website */}
-        <Route
-          path="/online-pre-enrollment"
-          element={<OnlinePreEnrollment />}
-        />{" "}
-        {/* Pre Enrollment */}
-        <Route path="/voter-roll" element={<VoterRoll />} /> {/* Voter Roll */}
-        <Route path="/election-results" element={<ElectionResults />} />{" "}
-        {/* Election Results */}
-        <Route path="/e-bulletin" element={<EBulletin />} /> {/* E-Bulletin */}
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <>
+      <ConnectBlockchain />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Home Route */}
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                onSubmit={handleSubmit}
+                loading={loading}
+                error={error}
+              />
+            }
+          />{" "}
+          {/* Login Page */}
+          <Route path="/new-registration" element={<RegistrationForm />} />{" "}
+          {/* Registration Form */}
+          <Route path="/enter-website" element={<EnterWebsite />} />{" "}
+          {/* Enter Website */}
+          <Route
+            path="/online-pre-enrollment"
+            element={<OnlinePreEnrollment />}
+          />{" "}
+          {/* Pre Enrollment */}
+          <Route path="/voter-roll" element={<VoterRoll />} />{" "}
+          {/* Voter Roll */}
+          <Route path="/election-results" element={<ElectionResults />} />{" "}
+          {/* Election Results */}
+          <Route path="/e-bulletin" element={<EBulletin />} />{" "}
+          {/* E-Bulletin */}
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
