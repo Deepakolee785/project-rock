@@ -55,6 +55,8 @@ describe("Lock", function () {
 
     it("should add candidates correctly", async function () {
       const { onlineVoting } = await loadFixture(deployOneYearLockFixture);
+      const candidatesCount = await onlineVoting.candidatesCount();
+      expect(candidatesCount).to.equal(0);
       await onlineVoting.addCandidate("Candidate 1");
       const candidate = await onlineVoting.candidates(1);
       expect(candidate.name).to.equal("Candidate 1");

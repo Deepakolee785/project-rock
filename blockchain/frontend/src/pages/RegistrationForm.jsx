@@ -112,10 +112,11 @@ const RegistrationForm = () => {
   };
 
   const addCandidate = async () => {
+    if (!formData.fullName) return alert("Enter fullname first");
     try {
       const result = await executeContractFunction(
         "addCandidate",
-        "Candidate 1"
+        formData.fullName
       );
       console.log("Contract function executed:", result);
     } catch (error) {
@@ -125,8 +126,19 @@ const RegistrationForm = () => {
 
   const getCandidates = async () => {
     try {
-      const result = await executeContractFunction("candidatesCount");
-      console.log({ result });
+      const candidatesCount = await executeContractFunction("candidatesCount");
+      const candidatesCountInNumber = Number(candidatesCount);
+      const candidates = [];
+
+      for (let i = 1; i <= candidatesCountInNumber; i++) {
+        const candidate = await executeContractFunction("candidates", i);
+        candidates.push({
+          id: candidate.id,
+          name: candidate.name,
+          vote: candidate.voteCount,
+        });
+      }
+      console.log({ candidates });
     } catch (error) {
       console.error("Error calling contract function:", error);
     }
